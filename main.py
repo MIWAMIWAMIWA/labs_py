@@ -44,16 +44,17 @@ class PreciousStone:
                 self.__price_per_carat)
 
 
-stone1 = PreciousStone.get_instance(PreciousStone)
-stone1.set_name("singleton")
-stone1.set_clarity(100)
-stone1.set_color("None")
-stone1.set_carat(100)
-stone1.set_price_per_carat(100)
-stone2 = PreciousStone.get_instance(PreciousStone)
-stone3 = PreciousStone("ruby", 3, "red", 3, 3)
-stone4 = PreciousStone("lapis", 4, "blue", 4, 4)
-stone5 = PreciousStone("ruby", 5, "red", 5, 5)
-arr = stone1, stone2, stone3, stone4, stone5
-for item in arr:
-    print(item.to_string())
+if __name__ == "__main__":
+    stone1 = PreciousStone.get_instance(PreciousStone)
+    stone1.set_name("singleton")
+    stone1.set_clarity(100)
+    stone1.set_color("None")
+    stone1.set_carat(100)
+    stone1.set_price_per_carat(100)
+    stone2 = PreciousStone.get_instance(PreciousStone)
+    stone3 = PreciousStone("ruby", 3, "red", 3, 3)
+    stone4 = PreciousStone("lapis", 4, "blue", 4, 4)
+    stone5 = PreciousStone("ruby", 5, "red", 5, 5)
+    arr = stone1, stone2, stone3, stone4, stone5
+    for item in arr:
+        print(item.to_string())

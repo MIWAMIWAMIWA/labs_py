@@ -38,7 +38,7 @@ class PreciousStone:
     def set_price_per_carat(self, price_per_carat):
         self.__price_per_carat = price_per_carat
 
-    def to_string(self):
+    def __str__(self):
         return self.__name + " " + str(self.__carat) + " " + self.__color + " " \
             + str(self.__clarity) + " " + str(
                 self.__price_per_carat)
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     stone5 = PreciousStone("ruby", 5, "red", 5, 5)
     arr = stone1, stone2, stone3, stone4, stone5
     for item in arr:
-        print(item.to_string())
+        print(str(item))

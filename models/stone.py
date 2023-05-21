@@ -1,22 +1,22 @@
+"""
+importing packages for abstract class
+"""
+
 from abc import ABC, abstractmethod
 
 
 class Stone(ABC):
     """
-    abstract class for stone classes
-    """
-    """
-    parent constructor for children classes
+    abstract parent  class for Stone classes
     """
 
+    # pylint: disable=too-few-public-methods
     def __init__(self, name, color):
         self.name = name
         self.color = color
 
-    """
-    abstract method for getting full price for children classes
-    """
-
     @abstractmethod
     def get_total_price(self):
-        pass
+        """
+        abstract method for child classes
+        """

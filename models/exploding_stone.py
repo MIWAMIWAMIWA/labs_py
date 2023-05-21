@@ -1,12 +1,12 @@
-from models.Stone import Stone
+"""
+importing parent class
+"""
+from models.stone import Stone
 
 
 class ExplodingStone(Stone):
     """
     for security purposes this class will be undocumented
-    """
-    """
-    constructor with usage of parent constructor 
     """
 
     def __init__(self, name, amount, color, price_per_amount):
@@ -14,16 +14,11 @@ class ExplodingStone(Stone):
         self.price_per_amount = price_per_amount
         Stone.__init__(self, name, color)
 
-    """
-    override function of parent method that returns full price of this stone
-    """
-
     def get_total_price(self):
+        """
+        get full price of stone
+        """
         return self.amount * self.price_per_amount
-
-    """
-    returns string representation of this object
-    """
 
     def __str__(self):
         return self.name + " " + str(self.amount) + " " + self.color + " " \

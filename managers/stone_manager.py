@@ -72,12 +72,6 @@ class StoneManager:
         """
         return zip([str(item) for item in self.stones], self.get_all_prices())
 
-    def dictionary(self):
-        """
-        returns list of dictionaries from objects in manager
-        """
-        return [item.__dict__ for item in self.stones]
-
     def get_lower_any_all(self, asked_price):
         """
         returns dictionary which tells is all or any stone could be bought

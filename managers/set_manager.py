@@ -45,7 +45,21 @@ class SetManager:
         self.current += 1
         return result
 
-
-
-
-
+    def __getitem__(self, item):
+        if not isinstance(item, int):
+            raise TypeError
+        if item < 0 or item >= self.__len__():
+            raise IndexError
+        current = 0
+        actual_position = -1
+        while 1:
+            if isinstance(self.values[current], tuple):
+                if len(self.values[current]) + actual_position >= item:
+                    return self.values[current][item - actual_position-1]
+                actual_position += len(self.values[current])
+                current += 1
+            else:
+                if item == actual_position + 1:
+                    return self.values[current]
+                actual_position += 1
+                current += 1

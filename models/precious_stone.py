@@ -8,14 +8,22 @@ class PreciousStone(Stone):
     """
     child class of parent abstract class Stone
     """
-    __default_precious_stone = None
 
     # pylint: disable = too-many-arguments
-    def __init__(self, name, carat, color, clarity, price_per_carat):
+    def __init__(self, name, carat, color, clarity, price_per_carat,note1,note2):
+        """
+        using parent constructor
+        :String name:
+        :int carat:
+        :String color:
+        :int clarity:
+        :int price_per_carat:
+        """
+        super().__init__(name, color, note1, note2)
         self.carat = carat
         self.clarity = clarity
         self.price_per_carat = price_per_carat
-        Stone.__init__(self, name, color)
+
 
     def get_total_price(self):
         """
@@ -35,16 +43,13 @@ class PreciousStone(Stone):
         """
         self.price_per_carat = self.price_per_carat * (1 + amount)
 
-    @classmethod
-    def get_instance(cls):
-        """
-        returns an instance of singleton object for this class
-        """
-        if cls.__default_precious_stone is None:
-            cls.__default_precious_stone = PreciousStone(None, 0, None, 0, 0)
-        return cls.__default_precious_stone
 
     def __str__(self):
-        return self.name + " " + str(self.carat) + " " + self.color + " " \
+        """
+        string representation of object
+        :return:
+        """
+        return self.__class__.__name__ + " : " + self.name + " " \
+            + str(self.carat) + " " + self.color + " " \
             + str(self.clarity) + " " + str(
-                self.price_per_carat)
+                self.price_per_carat) + " " + str(self.notes)

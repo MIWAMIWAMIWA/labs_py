@@ -11,8 +11,16 @@ class MethStone(Stone):
     """
 
     # pylint: disable = too-many-arguments
-    def __init__(self, name, pound, color, clarity, price_per_pound):
-        Stone.__init__(self, name, color)
+    def __init__(self, name, pound, color, clarity, price_per_pound,note1,note2):
+        """
+         using parent constructor
+        :String  name:
+        :int pound:
+        :String color:
+        :int  clarity:
+        :int price_per_pound:
+        """
+        super().__init__(name, color, note1, note2)
         self.pound = pound
         self.clarity = clarity
         self.price_per_pound = price_per_pound
@@ -24,6 +32,10 @@ class MethStone(Stone):
         return self.pound * self.price_per_pound * self.clarity / 100
 
     def __str__(self):
-        return self.name + " " + str(self.pound) + " " + self.color + " " \
+        """
+        string representation of object
+        """
+        return self.__class__.__name__ + " : " + self.name \
+            + " " + str(self.pound) + " " + self.color + " " \
             + str(self.clarity) + " " + str(
-                self.price_per_pound)
+                self.price_per_pound)+" " + str(self.notes)

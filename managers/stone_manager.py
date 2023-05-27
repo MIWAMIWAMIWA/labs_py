@@ -1,6 +1,8 @@
 """
 importing child classes of stone to compare with
 """
+from managers.decorators import logging_exception
+from managers.decorators import logging_arguments
 from models.precious_stone import PreciousStone
 from models.artificial_precious_stone import ArtificialPreciousStone
 
@@ -16,13 +18,21 @@ class StoneManager:
         initialization of list to save stone objects
         """
         self.stones = []
+        self.current = 0
 
     def __iter__(self):
         return self
 
+    def __next__(self):
+        res = self.stones[self.current]
+        self.current += 1
+        return res
+
     def __len__(self):
         return len(self.stones)
 
+    @logging_arguments
+    @logging_exception
     def __getitem__(self, item):
         if not isinstance(item, int):
             raise TypeError
@@ -30,6 +40,8 @@ class StoneManager:
             raise IndexError
         return self.stones[item]
 
+    @logging_arguments
+    @logging_exception
     def add_stone(self, stone):
         """
         adds Stone object to list
@@ -45,6 +57,8 @@ class StoneManager:
         return filter(lambda stone: (stone.__class__ in (ArtificialPreciousStone,
                                                          PreciousStone)), self.stones)
 
+    @logging_arguments
+    @logging_exception
     def find_all_lower(self, price):
         """
         returns a list of objects which have get_total_price() less than given price
@@ -77,6 +91,8 @@ class StoneManager:
         returns dictionary which tells is all or any stone could be bought
         for asked price
         """
+        if not isinstance(asked_price, int):
+            raise TypeError
         if asked_price <= 0:
             raise ValueError
         affordable = [asked_price >= current for current in self.get_all_prices()]

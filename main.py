@@ -1,7 +1,6 @@
 """
 importing all classes
 """
-
 from managers.stone_manager import StoneManager
 from managers.set_manager import SetManager
 from models.meth_stone import MethStone
@@ -16,6 +15,7 @@ if __name__ == "__main__":
     stone_manager.add_stone(ExplodingStone("glycerine", 50, "gray", 1000, 31, 32))
     stone_manager.add_stone(ArtificialPreciousStone("plastic Stone", 10, "white", 15, 41, 42))
     stone_manager.add_stone(PreciousStone("emerald", 1000, "green", 100, 100, 51, 52))
+    stone_manager.find_all_lower(1555)
     miwa = SetManager(stone_manager)
     for i in range(33):
         print(miwa[i])

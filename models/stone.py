@@ -33,7 +33,7 @@ class Stone(ABC):
         returns dict of pairs of variables of given type and its values
         """
         res = {}
-        for item in self.__dict__:
-            if isinstance(self.__dict__[item], type_of_var):
-                res[item] = self.__dict__[item]
+        for item, value in self.__dict__.items():
+            if isinstance(value, type_of_var):
+                res[item] = value
         return res

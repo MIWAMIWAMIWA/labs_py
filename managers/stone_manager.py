@@ -3,6 +3,7 @@ importing child classes of stone to compare with
 """
 from managers.decorators import logging_exception
 from managers.decorators import logging_arguments
+from managers.decorators import logged
 from models.precious_stone import PreciousStone
 from models.artificial_precious_stone import ArtificialPreciousStone
 
@@ -30,9 +31,7 @@ class StoneManager:
 
     def __len__(self):
         return len(self.stones)
-
     @logging_arguments
-    @logging_exception
     def __getitem__(self, item):
         if not isinstance(item, int):
             raise TypeError
@@ -40,7 +39,6 @@ class StoneManager:
             raise IndexError
         return self.stones[item]
 
-    @logging_arguments
     @logging_exception
     def add_stone(self, stone):
         """
@@ -58,7 +56,6 @@ class StoneManager:
                                                          PreciousStone)), self.stones)
 
     @logging_arguments
-    @logging_exception
     def find_all_lower(self, price):
         """
         returns a list of objects which have get_total_price() less than given price
@@ -86,6 +83,7 @@ class StoneManager:
         """
         return zip([str(item) for item in self.stones], self.get_all_prices())
 
+    @logged(Exception, mode="console")
     def get_lower_any_all(self, asked_price):
         """
         returns dictionary which tells is all or any stone could be bought

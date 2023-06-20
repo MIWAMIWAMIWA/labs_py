@@ -4,13 +4,20 @@ importing parent class
 from models.stone import Stone
 
 
+class NegativeGram(Exception):
+    """
+    this exception should be raised only when object
+    of class ArtificialPreciousStone have negative gram
+    """
+
+
 class ArtificialPreciousStone(Stone):
     """
     child class of parent abstract class Stone
     """
 
     # pylint: disable = too-many-arguments
-    def __init__(self, name, gram, color, price_per_gram,note1,note2):
+    def __init__(self, name, gram, color, price_per_gram, note1, note2):
         """
         using parent constructor
         :String name:
@@ -26,6 +33,8 @@ class ArtificialPreciousStone(Stone):
         """
         override function of parent method that returns full price of this Stone
         """
+        if self.gram < 0:
+            raise NegativeGram("IT CAN`T BE NEGATIVE - IS IT NOT OBVIOUS FOR YOU")
         return self.gram * self.price_per_gram / 2
 
     def __str__(self):
@@ -34,4 +43,4 @@ class ArtificialPreciousStone(Stone):
         """
         return self.__class__.__name__ + " : " + self.name + " " \
             + str(self.gram) + " " + self.color + " " \
-            + " " + str(self.price_per_gram)+" " + str(self.notes)
+            + " " + str(self.price_per_gram) + " " + str(self.notes)
